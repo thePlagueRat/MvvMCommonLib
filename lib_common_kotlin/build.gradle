@@ -1,0 +1,88 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def androidConfig= rootProject.ext.android
+def androidXDe=rootProject.ext.androidDependencies
+def otherDe=rootProject.ext.adnro
+
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    buildFeatures {
+        dataBinding = true
+    }
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation androidXDe.appcompat
+    implementation androidXDe.core_ktx
+    implementation androidXDe.material
+
+    implementation androidXDe.recyclerview
+
+    // 协程核心库
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    // 协程Android支持库
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+    // 协程Java8支持库
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
+    api project(path: ':lib_kotlin_utils')
+
+    //okhttp3
+    api "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    api("com.squareup.okhttp3:logging-interceptor:$okhttp3_version")
+
+    //retrofit2
+    api "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    api("com.squareup.retrofit2:adapter-rxjava3:$retrofit2_version")
+    api("com.squareup.retrofit2:converter-gson:$retrofit2_version")
+
+    //rxjava3
+    api "io.reactivex.rxjava3:rxjava:$rxjava_version"
+    api "io.reactivex.rxjava3:rxandroid:$rxandroid_version"
+
+
+    api "com.github.catch-pig:LoadingView:$loading_version"
+
+    // 基础依赖包，必须要依赖
+    api "com.gyf.immersionbar:immersionbar:$immersionbar_version"
+    // fragment快速实现（可选）
+//    api "com.gyf.immersionbar:immersionbar-components:$immersionbar_version"
+    // kotlin扩展（可选）
+    api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
+    //刷新
+    api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
+
+    // 分页加载
+    api "androidx.paging:paging-runtime:3.0.0"
+}
