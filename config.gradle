@@ -1,12 +1,10 @@
 ext {
     android = [
-            compileSdkVersion: 25,
-            buildToolsVersion: "28.0.2",
+            compileSdkVersion: 32,
             minSdkVersion    : 21,
             targetSdkVersion : 29,
-            versionName      : '3.10.4',
+            versionName      : "3.10.4",
             versionCode      : "1",
-            objectboxVersion : '2.5.1',
     ]
 
     //version
@@ -17,6 +15,8 @@ ext {
     recycleview_version = "1.2.0"
     kotlinx_coroutines_core_version = "1.4.3"
     paging_runtime_version = "3.0.0"
+    lifecycle_viewmodel_ktx_version = "2.3.1"
+    lifecycle_runtime_ktx_version = "2.3.1"
 
     //other
     gson_version = '2.8.8'
@@ -38,13 +38,16 @@ ext {
             kotlinx_coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_core_version",
             kotlinx_coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_core_version",
             kotlinx_coroutines_jdk8   : "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinx_coroutines_core_version",
-
+            lifecycle_viewmodel_ktx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel_ktx_version",
+            lifecycle_runtime_ktx     : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx_version",
     ]
 
     otherDependecies = [
             gson          : "com.google.code.gson:gson:${gson_version}",
             glide         : "com.github.bumptech.glide:${glide_version}",
             paging_runtime: "androidx.paging:paging-runtime:${paging_runtime_version}",
+            okhttp: "com.squareup.okhttp3:okhttp:$okhttp3_version",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp3_version",
 
     ]
 }

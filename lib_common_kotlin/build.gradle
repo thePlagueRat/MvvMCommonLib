@@ -1,18 +1,20 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+plugins{
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 def androidConfig= rootProject.ext.android
 def androidXDe=rootProject.ext.androidDependencies
-def otherDe=rootProject.ext.adnro
+def otherDe=rootProject.ext.otherDependecies
 
 
 android {
-    compileSdkVersion androidConfig.compileSdkVersion
+    compileSdk androidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion androidConfig.minSdkVersion
-        targetSdkVersion androidConfig.targetSdkVersion
+        minSdk androidConfig.minSdkVersion
+        targetSdk androidConfig.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,10 +34,14 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    kotlinOptions {
-        jvmTarget = 1.8
-    }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -48,21 +54,22 @@ dependencies {
     implementation androidXDe.recyclerview
 
     // 协程核心库
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    api androidXDe.kotlinx_coroutines_core
     // 协程Android支持库
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+    api androidXDe.kotlinx_coroutines_android
     // 协程Java8支持库
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3"
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-    api "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    api androidXDe.kotlinx_coroutines_jdk8
+    api androidXDe.lifecycle_viewmodel_ktx
+    api androidXDe.lifecycle_runtime_ktx
 
     api project(path: ':lib_kotlin_utils')
 
     //okhttp3
-    api "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    api("com.squareup.okhttp3:logging-interceptor:$okhttp3_version")
+    api otherDe.okhttp
+    api otherDe.logging_interceptor
 
     //retrofit2
+
     api "com.squareup.retrofit2:retrofit:$retrofit2_version"
     api("com.squareup.retrofit2:adapter-rxjava3:$retrofit2_version")
     api("com.squareup.retrofit2:converter-gson:$retrofit2_version")

@@ -1,18 +1,19 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins{
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 def androidConfig= rootProject.ext.android
 def androidXDe=rootProject.ext.androidDependencies
-def otherDe=rootProject.ext.adnro
+def otherDe=rootProject.ext.otherDependecies
 
 android {
-    compileSdkVersion androidConfig.compileSdkVersion
+    compileSdk androidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion androidConfig.minSdkVersion
-        targetSdkVersion androidConfig.targetSdkVersion
-        versionCode androidConfig.versionCode
-        versionName androidConfig.versionName
+        minSdk androidConfig.minSdkVersion
+        targetSdk androidConfig.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,8 +29,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     kotlinOptions {
-        jvmTarget = 1.8
+        jvmTarget = '1.8'
     }
 }
 
@@ -44,7 +49,6 @@ dependencies {
     implementation androidXDe.core_ktx
     implementation androidXDe.material
 
-    api otherDe.material
     //gson
     api otherDe.gson
 
