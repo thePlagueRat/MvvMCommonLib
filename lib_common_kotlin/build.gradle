@@ -69,27 +69,24 @@ dependencies {
     api otherDe.logging_interceptor
 
     //retrofit2
-
-    api "com.squareup.retrofit2:retrofit:$retrofit2_version"
-    api("com.squareup.retrofit2:adapter-rxjava3:$retrofit2_version")
-    api("com.squareup.retrofit2:converter-gson:$retrofit2_version")
+    api otherDe.retrofit
+    api otherDe.adapter_rxjava3
+    api otherDe.converter_gson
 
     //rxjava3
-    api "io.reactivex.rxjava3:rxjava:$rxjava_version"
-    api "io.reactivex.rxjava3:rxandroid:$rxandroid_version"
+    api otherDe.rxjava
+    api otherDe.rxandroid
 
-
-    api "com.github.catch-pig:LoadingView:$loading_version"
+    api otherDe.loadingView
 
     // 基础依赖包，必须要依赖
-    api "com.gyf.immersionbar:immersionbar:$immersionbar_version"
+    api otherDe.immersionbar
     // fragment快速实现（可选）
-//    api "com.gyf.immersionbar:immersionbar-components:$immersionbar_version"
+    //  api "com.gyf.immersionbar:immersionbar-components:$immersionbar_version"
     // kotlin扩展（可选）
-    api "com.gyf.immersionbar:immersionbar-ktx:$immersionbar_version"
+    api otherDe.immersionbar_ktx
     //刷新
-    api "com.scwang.smart:refresh-layout-kernel:$SmartRefreshLayout_version"
-
+    api otherDe.refresh_layout_kernel
     // 分页加载
-    api "androidx.paging:paging-runtime:3.0.0"
+    api androidXDe.paging_runtime
 }
